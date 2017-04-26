@@ -1,4 +1,4 @@
-package fr.polytech.si3.net;
+package fr.polytech.si3.net.server;
 
 import fr.polytech.si3.net.server.request.GetRequest;
 import fr.polytech.si3.net.server.request.ListRequest;
