@@ -1,11 +1,12 @@
 package fr.polytech.si3.net;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by alexh on 26/04/2017.
  */
-public class Idea {
+public class Idea implements Serializable {
     private String author;
     private String mail;
     private String description;
