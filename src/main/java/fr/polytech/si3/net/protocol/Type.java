@@ -1,4 +1,4 @@
-package fr.polytech.si3.net;
+package fr.polytech.si3.net.protocol;
 
 /**
  * Created by alexh on 26/04/2017.
