@@ -1,7 +1,14 @@
 package fr.polytech.si3.net;
 
-/**
- * Created by alexh on 26/04/2017.
- */
+import java.util.List;
+
 public interface Data {
+
+    boolean add(Idea idea);
+    List<Idea> list();
+    boolean participate(Idea idea);
+    List<String> listParticipants(Idea idea);
+
+    boolean delete(Idea idea);
+    boolean edit(Idea idea, Idea newIdea);
 }

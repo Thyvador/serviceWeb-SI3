@@ -10,12 +10,14 @@ public class Idea {
     private String mail;
     private String description;
     private List<String> technos;
+    private List<String> participants;
 
-    public Idea(String author, String mail, String description, List<String> technos) {
+    public Idea(String author, String mail, String description, List<String> technos, List<String> participants) {
         this.author = author;
         this.mail = mail;
         this.description = description;
         this.technos = technos;
+        this.participants = participants;
     }
 
     public String getAuthor() {
@@ -46,7 +48,15 @@ public class Idea {
         return technos;
     }
 
-    public void setTechnos(List<String> technos) {
-        this.technos = technos;
+    public void setTechnos(String techno) {
+        this.technos.add(techno);
+    }
+
+    public List<String> getParticipants() {
+        return participants;
+    }
+
+    public void addParticipants(String participant) {
+        this.participants.add(participant);
     }
 }
