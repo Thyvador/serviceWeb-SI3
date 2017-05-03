@@ -1,15 +1,16 @@
 package fr.polytech.si3.net.protocol;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by alexh on 02/05/2017.
  */
 public class Response<AnyType extends Serializable> implements Serializable{
     private boolean status;
-    private AnyType[] data;
+    private List<AnyType> data;
 
-    public Response(boolean status, AnyType[] data) {
+    public Response(boolean status, List <AnyType> data) {
         this.status = status;
         this.data = data;
     }
@@ -26,11 +27,11 @@ public class Response<AnyType extends Serializable> implements Serializable{
         this.status = status;
     }
 
-    public AnyType[] getData() {
+    public List <AnyType> getData() {
         return data;
     }
 
-    public void setData(AnyType[] data) {
+    public void setData(List <AnyType> data) {
         this.data = data;
     }
 }
