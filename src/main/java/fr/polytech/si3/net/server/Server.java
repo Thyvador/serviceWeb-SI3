@@ -11,7 +11,7 @@ import java.util.Map;
  * Created by alexh on 26/04/2017.
  */
 public class Server {
-    Map<String, Request> requestMap;
+    private Map<String, Request> requestMap;
 
     public Server() {
         this.requestMap = new HashMap<>();
