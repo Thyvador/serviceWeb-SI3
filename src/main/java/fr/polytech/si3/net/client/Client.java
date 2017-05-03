@@ -18,7 +18,7 @@ public class Client {
     ObjectOutputStream oos;
 
     public Client() {
-        this("", 6666);
+        this("172.19.250.159", 6666);
     }
 
     private Client(String hostname, int port){

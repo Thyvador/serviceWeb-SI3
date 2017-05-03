@@ -18,12 +18,12 @@ public class LaunchClient {
         Client client = new Client();
         try {
             client.sendRequest(new RequestContent <>(Type.ADD, new Idea("author", "author@mail.com", "description", Arrays.asList("techno1", "techno2"), Arrays.asList("participant1", "participant2"))));
-            while (true){
-                if ((response = client.receiveRequest()) != null) break;
-            }
-            System.out.println(response);
+//            while (true){
+//                if ((response = client.receiveRequest()) != null) break;
+//            }
+//            System.out.println(response);
             client.closeConnection();
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
