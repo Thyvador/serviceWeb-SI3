@@ -1,24 +1,26 @@
 package fr.polytech.si3.net.server.request;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
-import fr.polytech.si3.net.Exception.InvalidArgumentSizeException;
+import fr.polytech.si3.net.exception.InvalidArgumentSizeException;
+import fr.polytech.si3.net.exception.InvallidArgumentException;
 import fr.polytech.si3.net.protocol.Response;
 import fr.polytech.si3.net.protocol.Type;
 
-public abstract class Request {
+import java.io.Serializable;
+
+public abstract class Request<AnyType extends Serializable> {
 
     private Type type;
-    protected String[] args;
+    protected AnyType[] args;
     protected Response response;
 
-    public Request(Type type) throws InvalidArgumentSizeException {
-        if (args.length != type.argc){
-            throw new InvalidArgumentSizeException();
-        }
+    public Request(Type type) {
         this.type = type;
     }
 
-    public void execute(String... args) throws InvalidArgumentException {
+    public void execute(AnyType... args) throws InvallidArgumentException, InvalidArgumentSizeException {
+        if (args.length != type.argc) {
+            throw new InvalidArgumentSizeException();
+        }
         this.args = args;
     }
 
