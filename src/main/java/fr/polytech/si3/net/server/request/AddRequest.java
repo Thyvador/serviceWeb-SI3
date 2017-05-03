@@ -1,11 +1,13 @@
 package fr.polytech.si3.net.server.request;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
+import fr.polytech.si3.net.Idea;
 import fr.polytech.si3.net.exception.InvalidArgumentSizeException;
 import fr.polytech.si3.net.exception.InvallidArgumentException;
 import fr.polytech.si3.net.protocol.Type;
+import fr.polytech.si3.net.server.DataHandler;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,11 +18,17 @@ public class AddRequest extends Request {
 
     public AddRequest() throws InvalidArgumentSizeException {
         super(Type.ADD);
-
     }
 
     @Override
-    public void execute(List args) throws InvallidArgumentException, InvalidArgumentSizeException {
+    public void execute(Serializable[] args) throws InvallidArgumentException, InvalidArgumentSizeException {
         super.execute(args);
+
+        DataHandler dataHandler = DataHandler.getInstance();
+        if (args[0] instanceof Idea){
+            dataHandler.add((Idea) args[0]);
+        }else
+            throw new InvallidArgumentException();
+
     }
 }
