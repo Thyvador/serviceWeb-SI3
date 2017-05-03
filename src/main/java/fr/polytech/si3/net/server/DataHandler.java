@@ -4,19 +4,16 @@ import fr.polytech.si3.net.Idea;
 
 import java.util.List;
 
-/**
- * Created by alexh on 26/04/2017.
- */
 public class DataHandler implements Data {
 
-    private DataHandler instance;
+    private static DataHandler instance;
     private List<Idea> ideas;
 
     private DataHandler() {
         this.instance = instance;
     }
 
-    public DataHandler getInstance() {
+    public static DataHandler getInstance() {
         if (instance == null)
             instance = new DataHandler();
         return instance;
@@ -29,7 +26,7 @@ public class DataHandler implements Data {
 
     @Override
     public List<Idea> list() {
-        return null;
+        return ideas;
     }
 
     @Override
@@ -50,5 +47,9 @@ public class DataHandler implements Data {
     @Override
     public boolean edit(Idea idea, Idea newIdea) {
         return false;
+    }
+
+    public boolean listeEmpty() {
+        return ideas.isEmpty();
     }
 }
