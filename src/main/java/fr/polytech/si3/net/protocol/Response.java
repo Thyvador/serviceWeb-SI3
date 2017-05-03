@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * Created by alexh on 02/05/2017.
  */
-public class Response<AnyType extends Serializable> {
+public class Response<AnyType extends Serializable> implements Serializable{
     private boolean status;
     private AnyType[] data;
 
