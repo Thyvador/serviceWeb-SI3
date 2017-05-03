@@ -1,6 +1,7 @@
 package fr.polytech.si3.net.client;
 
-import fr.polytech.si3.net.Request;
+import fr.polytech.si3.net.protocol.RequestContent;
+import fr.polytech.si3.net.protocol.Response;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,6 +18,11 @@ public class Client {
     ObjectOutputStream oos;
 
     public Client() {
+        this("", 6666);
+    }
+
+    private Client(String hostname, int port){
+        openConnection(hostname, port);
     }
 
     public void openConnection(String machineMame, int nbPort) {
@@ -29,15 +35,15 @@ public class Client {
         }
     }
 
-    public void receiveRequest() throws IOException, ClassNotFoundException {
-        ois.readObject();
+    public Response receiveRequest() throws IOException, ClassNotFoundException {
+        return ((Response) ois.readObject());
     }
 
-    public void sendRequest(Request request) throws IOException {
+    public void sendRequest(RequestContent request) throws IOException {
         oos.writeObject(request);
     }
 
-    private void closeConnection() throws IOException {
+    public void closeConnection() throws IOException {
         oos.close();
         ois.close();
         socket.close();
