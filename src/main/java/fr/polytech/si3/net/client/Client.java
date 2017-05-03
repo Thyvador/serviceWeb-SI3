@@ -28,8 +28,8 @@ public class Client {
     public void openConnection(String machineMame, int nbPort) {
         try {
             socket = new Socket(machineMame, nbPort);
-            ois = new ObjectInputStream(socket.getInputStream());
             oos = new ObjectOutputStream(socket.getOutputStream());
+            ois = new ObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
