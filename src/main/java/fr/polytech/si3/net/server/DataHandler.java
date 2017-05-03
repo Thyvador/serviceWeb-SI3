@@ -2,6 +2,7 @@ package fr.polytech.si3.net.server;
 
 import fr.polytech.si3.net.Idea;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DataHandler implements Data {
@@ -10,7 +11,7 @@ public class DataHandler implements Data {
     private List<Idea> ideas;
 
     private DataHandler() {
-        this.instance = instance;
+        this.ideas = new ArrayList<>();
     }
 
     public static DataHandler getInstance() {

@@ -6,6 +6,7 @@ import fr.polytech.si3.net.exception.InvallidArgumentException;
 import fr.polytech.si3.net.protocol.Type;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by alexh on 26/04/2017.
@@ -19,8 +20,7 @@ public class AddRequest extends Request {
     }
 
     @Override
-    public void execute(Serializable[] args) throws InvallidArgumentException, InvalidArgumentSizeException {
+    public void execute(List args) throws InvallidArgumentException, InvalidArgumentSizeException {
         super.execute(args);
-
     }
 }
