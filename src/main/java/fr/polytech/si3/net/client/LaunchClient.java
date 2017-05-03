@@ -16,6 +16,7 @@ public class LaunchClient {
     public static void main(String[] args) {
         Response response;
         Client client = new Client();
+        System.out.println("lol");
         try {
             client.sendRequest(new RequestContent <>(Type.ADD, new Idea("author", "author@mail.com", "description", Arrays.asList("techno1", "techno2"), Arrays.asList("participant1", "participant2"))));
 //            while (true){

@@ -14,11 +14,11 @@ import java.net.Socket;
 public class Client {
 
     Socket socket;
-    ObjectInputStream ois;
     ObjectOutputStream oos;
+    ObjectInputStream ois;
 
     public Client() {
-        this("172.19.250.159", 6666);
+        this("10.212.126.224", 6666);
     }
 
     private Client(String hostname, int port){
