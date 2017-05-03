@@ -16,15 +16,17 @@ public class LaunchClient {
     public static void main(String[] args) {
         Response response;
         Client client = new Client();
-        System.out.println("lol");
         try {
-            client.sendRequest(new RequestContent <>(Type.ADD, new Idea("author", "author@mail.com", "description", Arrays.asList("techno1", "techno2"), Arrays.asList("participant1", "participant2"))));
-//            while (true){
-//                if ((response = client.receiveRequest()) != null) break;
-//            }
-//            System.out.println(response);
+            client.connect("10.212.126.224", 6666);
+//            client.sendRequest(new RequestContent <>(Type.ADD, new Idea("author", "author@mail.com", "description", Arrays.asList("techno1", "techno2"), Arrays.asList("participant1", "participant2"))));
+            client.sendRequest(new RequestContent <>(Type.LIST));
+            System.out.println("test");
+            while (true){
+                if ((response = client.receiveRequest()) != null) break;
+            }
+            System.out.println(response.getData());
             client.closeConnection();
-        } catch (IOException e) {
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }

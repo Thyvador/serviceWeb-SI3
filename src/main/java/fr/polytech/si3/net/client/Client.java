@@ -6,6 +6,7 @@ import fr.polytech.si3.net.protocol.Response;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
@@ -13,34 +14,25 @@ import java.net.Socket;
  */
 public class Client {
 
-    Socket socket;
+    Socket socket = new Socket();
     ObjectOutputStream oos;
     ObjectInputStream ois;
 
     public Client() {
-        this("10.212.126.224", 6666);
     }
 
-    private Client(String hostname, int port){
-        openConnection(hostname, port);
-    }
-
-    public void openConnection(String machineMame, int nbPort) {
-        try {
-            socket = new Socket(machineMame, nbPort);
-            oos = new ObjectOutputStream(socket.getOutputStream());
-            ois = new ObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public Response receiveRequest() throws IOException, ClassNotFoundException {
-        return ((Response) ois.readObject());
+    public void connect(String hostname, int port) throws IOException {
+        socket.connect(new InetSocketAddress(hostname, port));
     }
 
     public void sendRequest(RequestContent request) throws IOException {
+        oos = new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(request);
+    }
+
+    public Response receiveRequest() throws IOException, ClassNotFoundException {
+        ois = new ObjectInputStream(socket.getInputStream());
+        return ((Response) ois.readObject());
     }
 
     public void closeConnection() throws IOException {
