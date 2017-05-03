@@ -3,6 +3,7 @@ package fr.polytech.si3.net.server.request;
 import fr.polytech.si3.net.Idea;
 import fr.polytech.si3.net.exception.InvalidArgumentSizeException;
 import fr.polytech.si3.net.exception.InvallidArgumentException;
+import fr.polytech.si3.net.protocol.Response;
 import fr.polytech.si3.net.protocol.Type;
 import fr.polytech.si3.net.server.DataHandler;
 
@@ -29,6 +30,8 @@ public class AddRequest extends Request {
             dataHandler.add((Idea) args[0]);
         }else
             throw new InvallidArgumentException();
+
+        response = new Response(true, new ArrayList<>());
 
     }
 }

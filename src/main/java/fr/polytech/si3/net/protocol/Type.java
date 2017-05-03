@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by alexh on 26/04/2017.
  */
 public enum Type implements Serializable{
-    ADD(5),
+    ADD(1),
     LIST(0);
 
     public int argc;

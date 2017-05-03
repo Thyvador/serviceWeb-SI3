@@ -32,39 +32,45 @@ public class Server {
         }
     }
 
-    public void run() {
-        try {
-            ServerSocket serverSocket = new ServerSocket(portNumber);
-            Socket clientSocket = serverSocket.accept();
-            new Thread(() -> {
-                System.out.println(clientSocket.getInetAddress() + " : connected");
-                try {
-                    ObjectOutput output = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
-                    ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+    public void run() throws IOException {
+        ServerSocket serverSocket = new ServerSocket(portNumber);
+        while (true) {
+            try {
+                Socket clientSocket = serverSocket.accept();
+                new Thread(() -> {
+                    System.out.println(clientSocket.getInetAddress() + " : connected");
+                    try {
+                        ObjectOutput output = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
+                        ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
 
-                    RequestContent requestContent = (RequestContent) ois.readObject();
-
-
-                    Request request = requestMap.get(requestContent.type);
-                    request.execute(requestContent.args);
-
-                    output.writeObject(request.getResponse());
+                        RequestContent requestContent = (RequestContent) ois.readObject();
 
 
-                } catch (IOException | ClassNotFoundException | InvallidArgumentException | InvalidArgumentSizeException e) {
-                    e.printStackTrace();
-                }
+                        Request request = requestMap.get(requestContent.type);
+                        request.execute(requestContent.args);
+                        System.out.println(request.getResponse().toString());
+                        output.writeObject(request.getResponse());
+
+                    } catch (IOException | ClassNotFoundException | InvallidArgumentException | InvalidArgumentSizeException e) {
+                        e.printStackTrace();
+                    }
 
 
-            }).run();
+                }).run();
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
 
     }
 
     public static void main(String[] args) {
-        new Server(6666).run();
+        try {
+            new Server(6666).run();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

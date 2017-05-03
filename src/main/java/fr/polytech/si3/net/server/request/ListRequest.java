@@ -20,7 +20,7 @@ public class ListRequest<AnyType extends Serializable> extends Request {
     public void execute(Serializable[] args) throws InvallidArgumentException, InvalidArgumentSizeException {
         super.execute(args);
         DataHandler dataHandler = DataHandler.getInstance();
-        response = new Response<>(true, dataHandler.list());
+        response = new Response(true, dataHandler.list());
 
     }
 }

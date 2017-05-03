@@ -34,4 +34,12 @@ public class Response<AnyType extends Serializable> implements Serializable {
     public void setData(List<AnyType> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "Response{" +
+                "status=" + status +
+                ", data=" + data +
+                '}';
+    }
 }
