@@ -8,7 +8,10 @@ import fr.polytech.si3.net.server.request.AddRequest;
 import fr.polytech.si3.net.server.request.ListRequest;
 import fr.polytech.si3.net.server.request.Request;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutput;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
@@ -40,21 +43,24 @@ public class Server {
                 new Thread(() -> {
                     System.out.println(clientSocket.getInetAddress() + " : connected");
                     try {
-                        ObjectOutput output = new ObjectOutputStream(new BufferedOutputStream(clientSocket.getOutputStream()));
-                        ObjectInputStream ois = new ObjectInputStream(new BufferedInputStream(clientSocket.getInputStream()));
+                        ObjectOutput output = new ObjectOutputStream(clientSocket.getOutputStream());
+                        ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
+                        while(!clientSocket.isClosed()){
+                            RequestContent requestContent = (RequestContent) ois.readObject();
+                            System.out.println(requestContent);
 
-                        RequestContent requestContent = (RequestContent) ois.readObject();
-
-
-                        Request request = requestMap.get(requestContent.type);
-                        request.execute(requestContent.args);
-                        System.out.println(request.getResponse().toString());
-                        output.writeObject(request.getResponse());
-
+                            Request request = requestMap.get(requestContent.type);
+                            request.execute(requestContent.args);
+                            System.out.println(request);
+                            System.out.println(request.getResponse().toString());
+                            output.writeObject(request.getResponse());
+//                            output.flush();
+                        }
+                        output.close();
+                        ois.close();
                     } catch (IOException | ClassNotFoundException | InvallidArgumentException | InvalidArgumentSizeException e) {
                         e.printStackTrace();
                     }
-
 
                 }).run();
 

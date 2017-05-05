@@ -6,6 +6,7 @@ import fr.polytech.si3.net.protocol.Response;
 import fr.polytech.si3.net.protocol.Type;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public abstract class Request<AnyType extends Serializable> {
 
@@ -26,5 +27,14 @@ public abstract class Request<AnyType extends Serializable> {
 
     public Response getResponse() {
         return response;
+    }
+
+    @Override
+    public String toString() {
+        return "Request{" +
+                "type=" + type +
+                ", args=" + Arrays.toString(args) +
+                ", response=" + response +
+                '}';
     }
 }

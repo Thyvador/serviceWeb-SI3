@@ -60,4 +60,15 @@ public class Idea implements Serializable{
     public void addParticipants(String participant) {
         this.participants.add(participant);
     }
+
+    @Override
+    public String toString() {
+        return "Idea{" +
+                "author='" + author + '\'' +
+                ", mail='" + mail + '\'' +
+                ", description='" + description + '\'' +
+                ", technos=" + technos +
+                ", participants=" + participants +
+                '}';
+    }
 }
