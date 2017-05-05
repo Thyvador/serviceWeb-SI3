@@ -45,7 +45,7 @@ public class Server {
                     try {
                         ObjectOutput output = new ObjectOutputStream(clientSocket.getOutputStream());
                         ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
-                        while(!clientSocket.isClosed()){
+                        while(clientSocket.isConnected()){
                             RequestContent requestContent = (RequestContent) ois.readObject();
                             System.out.println(requestContent);
 

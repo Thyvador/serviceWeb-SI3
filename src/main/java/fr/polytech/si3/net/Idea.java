@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by alexh on 26/04/2017.
  */
-public class Idea implements Serializable{
+public class Idea implements Serializable {
     private String author;
     private String mail;
     private String description;

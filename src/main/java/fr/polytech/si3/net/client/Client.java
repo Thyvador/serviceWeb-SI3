@@ -1,11 +1,14 @@
 package fr.polytech.si3.net.client;
 
+import fr.polytech.si3.net.Serializor;
 import fr.polytech.si3.net.protocol.RequestContent;
+import fr.polytech.si3.net.protocol.Response;
 
 import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.ObjectInputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.net.SocketException;
 
 /**
  * Created by user on 03/05/2017.
@@ -29,24 +32,37 @@ public class Client {
 
     public void send(RequestContent obj) {
         try {
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject(obj);
-            socket.close();
+            new Serializor<RequestContent>().Serialize(obj, socket.getOutputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void sendTo(String address, int port, RequestContent obj) {
-        InetSocketAddress endpoint = new InetSocketAddress(address, port);
         try {
-            socket.connect(endpoint);
-            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-            oos.writeObject(obj);
-            System.out.println("sent " + obj);
-            socket.close();
+            connect(address, port);
+            send(obj);
+            close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public Response receiveResponse() {
+        try {
+            System.out.println("lol");
+            ObjectInputStream objectInputStream = new ObjectInputStream(socket.getInputStream());
+            return ((Response) objectInputStream.readObject());
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void close() throws IOException {
+        socket.close();
     }
 }
