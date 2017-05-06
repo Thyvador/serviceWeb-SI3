@@ -14,6 +14,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -43,25 +44,23 @@ public class Server {
                 new Thread(() -> {
                     System.out.println(clientSocket.getInetAddress() + " : connected");
                     try {
-                        ObjectOutput output = new ObjectOutputStream(clientSocket.getOutputStream());
-                        ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
                         while(clientSocket.isConnected()){
+                            ObjectOutput output = new ObjectOutputStream(clientSocket.getOutputStream());
+                            ObjectInputStream ois = new ObjectInputStream(clientSocket.getInputStream());
                             RequestContent requestContent = (RequestContent) ois.readObject();
-                            System.out.println(requestContent);
+                            System.out.println("Received: "+requestContent);
 
                             Request request = requestMap.get(requestContent.type);
                             request.execute(requestContent.args);
-                            System.out.println(request);
-                            System.out.println(request.getResponse().toString());
+                            System.out.println("Sent: "+request.getResponse());
+//                            System.out.println("    "+request.getResponse());
                             output.writeObject(request.getResponse());
-//                            output.flush();
                         }
-                        output.close();
-                        ois.close();
-                    } catch (IOException | ClassNotFoundException | InvallidArgumentException | InvalidArgumentSizeException e) {
+                    } catch (ClassNotFoundException | InvallidArgumentException | InvalidArgumentSizeException | IOException e) {
+                        System.out.println(clientSocket.isConnected());
                         e.printStackTrace();
                     }
-
+    
                 }).run();
 
             } catch (Exception e) {

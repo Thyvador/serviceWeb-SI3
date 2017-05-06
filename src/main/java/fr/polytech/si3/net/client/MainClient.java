@@ -25,6 +25,7 @@ public class MainClient {
             client.send(new RequestContent<>(Type.LIST));
             response = client.receiveResponse();
             System.out.println(response.getData());
+            client.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
