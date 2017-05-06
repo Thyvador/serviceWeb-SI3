@@ -14,7 +14,7 @@ Différentes requêtes pour notre serveur :
  - boolean add(Idea idea);
     Cette requête sert à ajouter une idée sur le serveur.
  - List<Idea> list();
-    Cette requête sert à récupérer la liste des idées présentes sru le serveur.
+    Cette requête sert à récupérer la liste des idées présentes sur le serveur.
  - boolean participate(Idea idea);
     Cette requête sert à s'ajouter en tant que participant à une idée sur le serveur.
  - List<String> listParticipants(Idea idea);
