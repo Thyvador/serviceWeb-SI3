@@ -1,6 +1,7 @@
-package fr.polytech.si3.net.server;
+package fr.polytech.si3.net.server.data;
 
 import fr.polytech.si3.net.Idea;
+import fr.polytech.si3.net.server.data.Data;
 
 import java.util.ArrayList;
 import java.util.List;
