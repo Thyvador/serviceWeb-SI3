@@ -61,11 +61,8 @@ public class Server {
                         RequestHandler requestHandler = requestMap.get(requestContent.type);
                         requestHandler.execute(requestContent);
                         oos.writeObject(requestHandler.response());
-                        while(clientSocket.isConnected()){
-                            wait();
-                        }
                         closeConnection();
-                    } catch (IOException | ClassNotFoundException | InvalidArgumentException | InvalidNumberArgumentException | InterruptedException e) {
+                    } catch (IOException | ClassNotFoundException | InvalidArgumentException | InvalidNumberArgumentException e) {
                         e.printStackTrace();
                     }
                 });

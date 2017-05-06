@@ -1,0 +1,27 @@
+Serveur TCP du binôme constitué de :
+    - Loïc Gardaire
+    - Johann Mortara
+
+Binôme collaborateur :
+    - Thomas Canava
+    - Alexandre Hiltcher
+
+Sérialisation Objet
+
+Port utilisé : 6666
+
+Différentes requêtes pour notre serveur :
+ - boolean add(Idea idea);
+    Cette requête sert à ajouter une idée sur le serveur.
+ - List<Idea> list();
+    Cette requête sert à récupérer la liste des idées présentes sru le serveur.
+ - boolean participate(Idea idea);
+    Cette requête sert à s'ajouter en tant que participant à une idée sur le serveur.
+ - List<String> listParticipants(Idea idea);
+    Cette requête sert à récupérer la liste des participants à une idée sur le serveur.
+ - boolean delete(Idea idea);
+    Cette requête sert à supprimer une idée sur le serveur.
+ - boolean edit(Idea idea, Idea newIdea);
+    Cette requête sert à modifier les informations d'une idée sur le serveur par une nouvelle idée pour la mettre à jour.
+
+Pour notre part, nous avons codé les deux premières requêtes.
