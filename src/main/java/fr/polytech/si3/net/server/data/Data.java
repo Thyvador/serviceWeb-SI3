@@ -4,6 +4,9 @@ import fr.polytech.si3.net.Idea;
 
 import java.util.List;
 
+/**
+ * Interface recensant l'ensemble des requeêtes qu'il est possible d'implémenter.
+ */
 public interface Data {
 
     boolean add(Idea idea);
