@@ -6,7 +6,9 @@ import fr.polytech.si3.net.protocol.Response;
 import fr.polytech.si3.net.protocol.Type;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public abstract class Request<AnyType extends Serializable> {
 

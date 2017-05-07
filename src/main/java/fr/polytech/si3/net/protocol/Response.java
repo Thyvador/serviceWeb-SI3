@@ -21,6 +21,10 @@ public class Response<AnyType extends Serializable> implements Serializable {
         this.data = data;
     }
 
+    public Response(boolean b) {
+        status = b;
+    }
+
     public boolean isStatus() {
         return status;
     }
