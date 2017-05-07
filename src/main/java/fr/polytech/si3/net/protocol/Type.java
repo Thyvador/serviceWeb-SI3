@@ -8,8 +8,8 @@ import java.io.Serializable;
 public enum Type implements Serializable{
     ADD(1),
     LIST(0),
-    PARTCIPATE(1),
-    LISTPART(0),
+    PARTICIPATE(1),
+    LISTPART(1),
     DELETE(1),
     EDIT(2);
 
