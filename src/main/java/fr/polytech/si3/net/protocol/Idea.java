@@ -50,16 +50,8 @@ public class Idea implements Serializable {
         this.description = description;
     }
 
-    public List<String> getTechnos() {
-        return technos;
-    }
-
     public void setTechnos(String techno) {
         this.technos.add(techno);
-    }
-
-    public List<String> getParticipants() {
-        return participants;
     }
 
     public void addParticipants(String participant) {
