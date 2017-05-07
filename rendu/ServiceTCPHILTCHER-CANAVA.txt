@@ -10,6 +10,7 @@ Marshalling : Sérialisation Objet
 
 Description du protocole d'application :
     Une requête se fait de la manière suivant : Le client envoie au serveur un objet RequestContent, le serveur traite la requête et lui renvoie un objet Response.
+    RequestContent contient généralement un objet Idea qui représente une idée
 
 Description de la sérialisation :
     Afin d'envoyer les reqêtes et les réponse, les objets correspondants sont sérialisés.
@@ -28,6 +29,6 @@ Requêtes disponibles côté serveur :
  - boolean edit(Idea idea, Idea newIdea);
     Cette requête sert à modifier les informations d'une idée sur le serveur par une nouvelle idée pour la mettre à jour.
 
-Pour notre binôme nous avons implémenter les requêtes suivantes :
+Pour notre binôme nous avons implémenté les requêtes suivantes :
  - requête add
  - requpete list

@@ -1,4 +1,4 @@
-package fr.polytech.si3.net;
+package fr.polytech.si3.net.protocol;
 
 import java.io.Serializable;
 import java.util.List;
@@ -6,13 +6,22 @@ import java.util.List;
 /**
  * Created by alexh on 26/04/2017.
  */
+/**Object representing an Idea**/
 public class Idea implements Serializable {
+    /**
+     * Name of the author of the idea
+     **/
     private String author;
+    /**Mail of the author of the idea**/
     private String mail;
+    /**Textual description of the idea**/
     private String description;
+    /**List of strings representing the technologies used by the idea**/
     private List<String> technos;
+    /**List of strings corresponding to the idea**/
     private List<String> participants;
-
+    
+    /**Constructs an idea**/
     public Idea(String author, String mail, String description, List<String> technos, List<String> participants) {
         this.author = author;
         this.mail = mail;
@@ -44,20 +53,12 @@ public class Idea implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public List<String> getTechnos() {
-        return technos;
-    }
-
-    public void setTechnos(String techno) {
+    
+    public void addTechno(String techno) {
         this.technos.add(techno);
     }
-
-    public List<String> getParticipants() {
-        return participants;
-    }
-
-    public void addParticipants(String participant) {
+    
+    public void addParticipant(String participant) {
         this.participants.add(participant);
     }
 

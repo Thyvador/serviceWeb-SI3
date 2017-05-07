@@ -1,6 +1,6 @@
 package fr.polytech.si3.net.server.request;
 
-import fr.polytech.si3.net.Idea;
+import fr.polytech.si3.net.protocol.Idea;
 import fr.polytech.si3.net.exception.InvalidArgumentSizeException;
 import fr.polytech.si3.net.exception.InvallidArgumentException;
 import fr.polytech.si3.net.protocol.Response;
@@ -9,7 +9,6 @@ import fr.polytech.si3.net.server.DataHandler;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by alexh on 26/04/2017.
