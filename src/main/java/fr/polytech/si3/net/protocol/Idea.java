@@ -1,6 +1,7 @@
 package fr.polytech.si3.net.protocol;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,10 +16,10 @@ public class Idea implements Serializable {
     private String author;
     private String mail;
     private String description;
-    private List<String> technos;
-    private List<String> participants;
+    private ArrayList<String> technos;
+    private ArrayList<String> participants;
 
-    public Idea(String author, String mail, String description, List<String> technos, List<String> participants) {
+    public Idea(String author, String mail, String description, ArrayList<String> technos, ArrayList<String> participants) {
         this.author = author;
         this.mail = mail;
         this.description = description;
