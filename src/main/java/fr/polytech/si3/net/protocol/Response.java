@@ -4,19 +4,21 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by alexh on 02/05/2017.
+ * Response is the object sent by the server to the client after handling the request.
  */
 public class Response<AnyType extends Serializable> implements Serializable {
     private boolean status;
     private List<AnyType> data;
 
+    /**
+     * Default constructor of Response.
+     *
+     * @param status the status of the response : true if success, else otherwise.
+     * @param data   the data sent back to the client.
+     */
     public Response(boolean status, List<AnyType> data) {
         this.status = status;
         this.data = data;
-    }
-
-    public Response(boolean b) {
-        status = b;
     }
 
     public boolean isStatus() {

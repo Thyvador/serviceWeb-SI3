@@ -1,0 +1,33 @@
+Protocole d'application du binôme constitué de :
+    - Thomas Canava
+    - Alexandre Hiltcher
+
+Binôme collaborateur :
+    - Loïc Gardaire
+    - Johann Mortara
+
+Marshalling : Sérialisation Objet
+
+Description du protocole d'application :
+    Une requête se fait de la manière suivant : Le client envoie au serveur un objet RequestContent, le serveur traite la requête et lui renvoie un objet Response.
+
+Description de la sérialisation :
+    Afin d'envoyer les reqêtes et les réponse, les objets correspondants sont sérialisés.
+
+Requêtes disponibles côté serveur :
+ - boolean add(Idea idea);
+    Cette requête sert à ajouter une idée sur le serveur.
+ - List<Idea> list();
+    Cette requête sert à récupérer la liste des idées présentes sru le serveur.
+ - boolean participate(Idea idea);
+    Cette requête sert à s'ajouter en tant que participant à une idée sur le serveur.
+ - List<String> listParticipants(Idea idea);
+    Cette requête sert à récupérer la liste des participants à une idée sur le serveur.
+ - boolean delete(Idea idea);
+    Cette requête sert à supprimer une idée sur le serveur.
+ - boolean edit(Idea idea, Idea newIdea);
+    Cette requête sert à modifier les informations d'une idée sur le serveur par une nouvelle idée pour la mettre à jour.
+
+Pour notre binôme nous avons implémenter les requêtes suivantes :
+ - requête add
+ - requpete list
