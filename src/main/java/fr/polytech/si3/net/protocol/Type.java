@@ -12,6 +12,7 @@ import java.io.Serializable;
  *     <li>delete : supprime l'idée passée en paramètre</li>
  *     <li>edit : modifie l'idée passée en premier paramètre par une nouvelle idée passée en deuxième paramètre</li>
  * </ul>
+ * Seules les deux premières requêtes ont été implémentées.
  */
 public enum Type implements Serializable{
     ADD(1),
