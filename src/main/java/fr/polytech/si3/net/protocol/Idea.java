@@ -19,12 +19,14 @@ public class Idea implements Serializable {
     private ArrayList<String> technos;
     private ArrayList<String> participants;
 
-    public Idea(String author, String mail, String description, ArrayList<String> technos, ArrayList<String> participants) {
+    public Idea(String author, String mail, String description, List<String> technos, List<String> participants) {
         this.author = author;
         this.mail = mail;
         this.description = description;
-        this.technos = technos;
-        this.participants = participants;
+        this.technos = new ArrayList<>();
+        this.technos.addAll(technos);
+        this.participants = new ArrayList<>();
+        this.participants.addAll(participants);
     }
 
     public String getAuthor() {
@@ -51,11 +53,11 @@ public class Idea implements Serializable {
         this.description = description;
     }
 
-    public void setTechnos(String techno) {
+    public void addTechno(String techno) {
         this.technos.add(techno);
     }
 
-    public void addParticipants(String participant) {
+    public void addParticipant(String participant) {
         this.participants.add(participant);
     }
 
