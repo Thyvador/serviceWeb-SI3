@@ -1,6 +1,6 @@
 package fr.polytech.si3.net.server.request;
 
-import fr.polytech.si3.net.Idea;
+import fr.polytech.si3.net.protocol.Idea;
 import fr.polytech.si3.net.exception.InvalidArgumentException;
 import fr.polytech.si3.net.exception.InvalidNumberArgumentException;
 import fr.polytech.si3.net.protocol.RequestContent;
@@ -22,7 +22,7 @@ public class AddHandler extends RequestHandler {
     public void execute(RequestContent requestContent) throws InvalidNumberArgumentException, InvalidArgumentException {
         super.execute(requestContent);
         if (validArguments(requestContent)){
-            dataHandler.add((Idea) requestContent.args.get(0));
+            dataHandler.add((Idea) requestContent.args[0]);
         }
     }
 
@@ -34,7 +34,7 @@ public class AddHandler extends RequestHandler {
     }
 
     public boolean validArguments(RequestContent requestContent) throws InvalidArgumentException {
-        if(requestContent.args.get(0) instanceof Idea){
+        if(requestContent.args[0] instanceof Idea){
             return true;
         }
         throw new InvalidArgumentException("Argument is not an Idea");

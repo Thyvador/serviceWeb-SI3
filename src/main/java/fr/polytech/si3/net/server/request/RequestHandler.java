@@ -20,8 +20,8 @@ public abstract class RequestHandler {
     }
 
     public void execute(RequestContent requestContent) throws InvalidNumberArgumentException, InvalidArgumentException {
-        if (requestContent.args.size() != requestType.argc) {
-            throw new InvalidNumberArgumentException("Arguments list must contains " + requestType.argc + " arguments, found : " + requestContent.args.size());
+        if (requestContent.args.length != requestType.argc) {
+            throw new InvalidNumberArgumentException("Arguments list must contains " + requestType.argc + " arguments, found : " + requestContent.args.length);
         }
     }
 

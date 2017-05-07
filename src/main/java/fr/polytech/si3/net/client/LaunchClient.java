@@ -1,6 +1,6 @@
 package fr.polytech.si3.net.client;
 
-import fr.polytech.si3.net.Idea;
+import fr.polytech.si3.net.protocol.Idea;
 import fr.polytech.si3.net.protocol.RequestContent;
 import fr.polytech.si3.net.protocol.Response;
 import fr.polytech.si3.net.protocol.Type;

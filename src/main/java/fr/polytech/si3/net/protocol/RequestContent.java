@@ -1,8 +1,8 @@
 package fr.polytech.si3.net.protocol;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Objet qui est envoyé par le client dans le cadre de la sérialisation Objet.
@@ -12,12 +12,12 @@ import java.util.List;
  * <li>un attribut de type List&lt;Anytype&gt; qui correspond aux paramètres de la requête</li>
  * </ul>
  */
-public class RequestContent <AnyType extends Serializable> implements Serializable {
+public class RequestContent<AnyType extends Serializable> implements Serializable {
     public Type type;
-    public List <AnyType> args;
+    public AnyType[] args;
 
     public RequestContent(Type type, AnyType... args) {
         this.type = type;
-        this.args = Arrays.asList(args);
+        this.args = args;
     }
 }
