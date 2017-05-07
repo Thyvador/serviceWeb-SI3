@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by alexh on 26/04/2017.
+ * Objet représentant une idée.
+ * Cet objet possède cinq attributs :
+ * <ul>
+ * <li>trois attributs de type Sring, qui correspondent à l'auteur, au mail et à la description</li>
+ * <li>deux attributs de type List&lt;Anytype&gt; qui correspondent aux technologies et aux participants</li>
+ * </ul>
  */
 public class Idea implements Serializable {
     private String author;
