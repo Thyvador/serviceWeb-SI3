@@ -1,7 +1,6 @@
 package fr.polytech.si3.net.protocol;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 /**
@@ -13,6 +12,7 @@ import java.util.Arrays;
  * </ul>
  */
 public class RequestContent<AnyType extends Serializable> implements Serializable {
+
     public Type type;
     public AnyType[] args;
 
