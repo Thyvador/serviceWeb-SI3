@@ -1,8 +1,5 @@
 package fr.polytech.si3.net.rmi;
 
-import fr.polytech.si3.net.exception.InvalidArgumentException;
-import fr.polytech.si3.net.exception.InvalidNumberArgumentException;
-import fr.polytech.si3.net.protocol.RequestContent;
 import fr.polytech.si3.net.protocol.Type;
 import fr.polytech.si3.net.server.data.DataHandler;
 import fr.polytech.si3.net.server.request.AddHandler;
@@ -14,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,6 +43,7 @@ public class Server {
     }
 
     public static void main(String[] args) {
+        if(System.getSecurityManager() == null) System.setSecurityManager(new RMISecurityManager());
         Server server = new Server();
         server.run();
     }
@@ -52,21 +52,11 @@ public class Server {
         while (true) {
             try {
                 Socket clientSocket = serverSocket.accept();
-                Thread clientThread = new Thread(() -> {
-                    try {
-                        System.out.println("New connection : " + clientSocket.getInetAddress());
-                        ois = new ObjectInputStream(clientSocket.getInputStream());
-                        oos = new ObjectOutputStream(clientSocket.getOutputStream());
-                        RequestContent requestContent = (RequestContent) ois.readObject();
-                        RequestHandler requestHandler = requestMap.get(requestContent.type);
-                        requestHandler.execute(requestContent);
-                        oos.writeObject(requestHandler.response());
-                        closeConnection();
-                    } catch (IOException | ClassNotFoundException | InvalidArgumentException | InvalidNumberArgumentException e) {
-                        e.printStackTrace();
-                    }
-                });
-                clientThread.run();
+                IdeaHandler ideaHandler = new IdeaHandler();
+                String url = "rmi://" + clientSocket.getInetAddress() + "/ideaHandler";
+                System.out.println("Enregistrement de l'objet avec l'url : " + url);
+                Naming.rebind(url, ideaHandler);
+                System.out.println("Serveur lancé");
             } catch (IOException e) {
                 e.printStackTrace();
             }
