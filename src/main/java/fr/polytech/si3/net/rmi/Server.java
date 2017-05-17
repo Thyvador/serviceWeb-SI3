@@ -9,9 +9,12 @@ import fr.polytech.si3.net.server.request.RequestHandler;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.Naming;
+import java.rmi.RMISecurityManager;
+import java.rmi.registry.LocateRegistry;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +29,7 @@ public class Server {
 
     private Map<Type, RequestHandler> requestMap;
 
-    private int PORT = 1099;
+    private int PORT = 6666;
 
 
     public Server() {
@@ -48,9 +51,10 @@ public class Server {
 
     public void run() {
         try {
-            Socket clientSocket = serverSocket.accept();
+            LocateRegistry.createRegistry(1099);
+            if (System.getSecurityManager() == null) System.setSecurityManager(new RMISecurityManager());
             IdeaHandler ideaHandler = new IdeaHandler();
-            String url = "rmi://" + clientSocket.getInetAddress() + "/ideaHandler";
+            String url = "rmi://10.212.119.244/testRMI";
             System.out.println("Enregistrement de l'objet avec l'url : " + url);
             Naming.rebind(url, ideaHandler);
             System.out.println("Serveur lancé");
