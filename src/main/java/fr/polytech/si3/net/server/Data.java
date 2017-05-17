@@ -1,6 +1,6 @@
 package fr.polytech.si3.net.server;
 
-import fr.polytech.si3.net.Idea;
+import fr.polytech.si3.net.protocol.Idea;
 
 import java.util.List;
 

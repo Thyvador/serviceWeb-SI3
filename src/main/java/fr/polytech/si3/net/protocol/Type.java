@@ -1,13 +1,22 @@
 package fr.polytech.si3.net.protocol;
 
-/**
- * Created by alexh on 26/04/2017.
- */
-public enum Type {
-    ADD(5),
-    LIST(0);
+import java.io.Serializable;
 
-    int argc;
+/**
+ * The type of the request.
+ */
+public enum Type implements Serializable{
+    ADD(1),
+    LIST(0),
+    PARTICIPATE(1),
+    LISTPART(1),
+    DELETE(1),
+    EDIT(2);
+
+    /**
+     * The number of arguments of the request content.
+     */
+    public int argc;
 
     Type(int i) {
         argc = i;
