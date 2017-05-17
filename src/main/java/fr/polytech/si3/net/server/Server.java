@@ -23,11 +23,6 @@ public class Server {
         }
     }
 
-    public void run() throws IOException {
-
-
-    }
-
     public static void main(String[] args) {
         Server server = new Server();
     }
