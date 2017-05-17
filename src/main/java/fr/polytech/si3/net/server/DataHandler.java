@@ -2,55 +2,54 @@ package fr.polytech.si3.net.server;
 
 import fr.polytech.si3.net.protocol.Idea;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataHandler implements Data {
+public class DataHandler extends UnicastRemoteObject implements Data {
 
-    private static DataHandler instance;
     private List<Idea> ideas;
 
-    private DataHandler() {
+    public DataHandler() throws RemoteException {
+        super();
         this.ideas = new ArrayList<>();
     }
 
-    public static DataHandler getInstance() {
-        if (instance == null)
-            instance = new DataHandler();
-        return instance;
+    @Override
+    public boolean add(Idea idea) throws RemoteException{
+        boolean tmp = ideas.add(idea);
+        System.out.println(tmp);
+        return tmp;
     }
 
     @Override
-    public boolean add(Idea idea) {
-        return ideas.add(idea);
-    }
-
-    @Override
-    public List<Idea> list() {
+    public List<Idea> list() throws RemoteException {
+        System.out.println(ideas);
         return ideas;
     }
 
     @Override
-    public boolean participate(Idea idea) {
+    public boolean participate(Idea idea) throws RemoteException {
         return false;
     }
 
     @Override
-    public List<String> listParticipants(Idea idea) {
+    public List<String> listParticipants(Idea idea) throws RemoteException {
         return null;
     }
 
     @Override
-    public boolean delete(Idea idea) {
+    public boolean delete(Idea idea) throws RemoteException {
         return false;
     }
 
     @Override
-    public boolean edit(Idea idea, Idea newIdea) {
+    public boolean edit(Idea idea, Idea newIdea) throws RemoteException {
         return false;
     }
 
-    public boolean listeEmpty() {
+    public boolean listeEmpty() throws RemoteException {
         return ideas.isEmpty();
     }
 }
