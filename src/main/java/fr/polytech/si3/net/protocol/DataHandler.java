@@ -1,6 +1,4 @@
-package fr.polytech.si3.net.server;
-
-import fr.polytech.si3.net.protocol.Idea;
+package fr.polytech.si3.net.protocol;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

@@ -1,4 +1,4 @@
-package fr.polytech.si3.net.server;
+package fr.polytech.si3.net.protocol;
 
 import fr.polytech.si3.net.protocol.Idea;
 
