@@ -12,7 +12,6 @@ import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.rmi.Naming;
-import java.rmi.RMISecurityManager;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,7 +26,7 @@ public class Server {
 
     private Map<Type, RequestHandler> requestMap;
 
-    private int PORT = 6666;
+    private int PORT = 1099;
 
 
     public Server() {
@@ -43,24 +42,23 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        if(System.getSecurityManager() == null) System.setSecurityManager(new RMISecurityManager());
         Server server = new Server();
         server.run();
     }
 
     public void run() {
-        while (true) {
-            try {
-                Socket clientSocket = serverSocket.accept();
-                IdeaHandler ideaHandler = new IdeaHandler();
-                String url = "rmi://" + clientSocket.getInetAddress() + "/ideaHandler";
-                System.out.println("Enregistrement de l'objet avec l'url : " + url);
-                Naming.rebind(url, ideaHandler);
-                System.out.println("Serveur lancé");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        try {
+            Socket clientSocket = serverSocket.accept();
+            IdeaHandler ideaHandler = new IdeaHandler();
+            String url = "rmi://" + clientSocket.getInetAddress() + "/ideaHandler";
+            System.out.println("Enregistrement de l'objet avec l'url : " + url);
+            Naming.rebind(url, ideaHandler);
+            System.out.println("Serveur lancé");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+//        while (true) {
+//        }
     }
 
     public void closeConnection() throws IOException {
