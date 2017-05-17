@@ -1,5 +1,8 @@
 package fr.polytech.si3.net.server;
 
+import fr.polytech.si3.net.protocol.Data;
+import fr.polytech.si3.net.protocol.DataHandler;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
